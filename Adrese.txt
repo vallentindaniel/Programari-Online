@@ -1,0 +1,3 @@
+http://localhost/pr/1/TFOP/tfop/welcome.php           // cabinet
+
+http://localhost/pr/1/TFOP/tfop/administrator/login.php       // Administrator
