@@ -1,0 +1,7 @@
+[11-Apr-2019 06:21:25 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/login.php on line 59
+[11-Apr-2019 06:27:19 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/login.php on line 59
+[11-Apr-2019 09:56:48 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/login.php on line 59
+[11-Apr-2019 10:44:46 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/login.php on line 59
+[11-Apr-2019 12:14:58 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/login.php on line 59
+[11-Apr-2019 14:10:35 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/login.php on line 59
+[11-Apr-2019 16:44:40 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/login.php on line 59
