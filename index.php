@@ -1,12 +1,39 @@
 <?php
-require_once "config.php";
-error_reporting(0);
-session_start();
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+  require_once "config.php";
+  include ("functions.php");
+  
+  //pentru debug
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+  
+  session_start();
+  // Check if the user is already logged in, if yes then redirect him to welcome page
+  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
   header("location: welcome.php");
   exit;
-}
+  }
+
+  $functions = new functions();
+
+
+    //Nu ma pricep prea bine , cred ca puteau fi setate variabilele astea direct din form fara sa le scriu aici
+    //De testat daca parolele se potrivesc (Parola/Confirma parola)
+    //De schimbat formatul de la data nasterii
+    /*In functions.php o sa mai umblu eu pentru afisarea erorilor , o sa dau un return cu eroarea daca e cazul ( $error = $functon->Register())
+    In function Register() sa dau $error = "Eroare"
+    */
+    //Se mai poate lucra la interfata , ceva cu boostrap , sper sa facem ceva mai ok pana saptamana viitoare
+    //Modificarea mesajelor din Register.php si de aici din login , sa apara mai ok cand te inregistrezi/loghezi
+    //Welcome.php trebuie refacut tot , sa facem ce am vorbit
+
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $functions->Login($username, $password);
+  }
+
 
 ?>
 
@@ -29,7 +56,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 </head>
 <body>
 
-
     <div class="col-sm">
         <div class="container">
                 <ul class="nav nav-tabs">
@@ -48,57 +74,34 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     <h3>Va rugam conectativa</h3> 
 </legend>
 
-<h5>Plictico-stiri</h5>
-    <div class="col-sm-4 col-xs-12">
+<div class="col-sm-4 col-xs-12">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
-          <h1>Scanarea PET</h1>
+            <h1>Login</h1>
         </div>
         <div class="panel-body">
-         <img src="corp-umann.gif" >
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Nume Utilizator</label>
+                <input type="text" name="username" class="form-control" >
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Parola</label>
+                <input type="password" name="password" class="form-control">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Logare">
+                 <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+        </form>
         </div>
         <div class="panel-footer">
-          <h5>Scanarea PET a unui corp folosind substanta de contrast</h5>
-           <h6>Sursa</h6><a href="https://ro.wikipedia.org/wiki/Cronologia_descoperirilor_%C3%AEn_medicin%C4%83">Wikipedia</a>
+          
         </div>
       </div>      
     </div> 
-
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h2>Primul stimulator cardiac</h2>
-        </div>
-        <div class="panel-body">
-         <img src="stimulator.jpg" >
-        </div>
-        <div class="panel-footer">
-          <h5>Cunoscut pentru dimensiuni reduse si pentru ca era implantabil</h5>
-           <h6>Sursa</h6><a href="https://ro.wikipedia.org/wiki/Cronologia_descoperirilor_%C3%AEn_medicin%C4%83">Wikipedia</a>
-        </div>
-      </div>      
-    </div> 
-
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h2>Top 10 descoperiri din lumea medicala</h2>
-        </div>
-        <div class="panel-body">
-         <h6>-Vitaminele</h6>
-         <h6>-Teoria Germenilor</h6>
-         <h6>-Penicilina</h6>
-         <h6>-Vaccinurile</h6>
-         <h6>-ADN-ul</h6>
-         <h6>-Insulina</h6>
-         <h6>...</h6>
-        </div>
-        <div class="panel-footer">
-           <h6>Sursa</h6><a href="https://www.ziaruldesanatate.ro/articole/din-istoria-medicinei/top-10-descoperiri-medicale-care-au-schimbat-lumea/">Ziarul-de-sanatate</a>
-        </div>
-      </div>      
-    </div>   
-
                          
                     
                 </div>
