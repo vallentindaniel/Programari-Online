@@ -1,1 +1,0 @@
-folderele doctor si administrator pot fi mutate si in alta locatie atat timp cat ele sunt pe domeniul local host

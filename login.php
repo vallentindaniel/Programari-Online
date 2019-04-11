@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password FROM doctori_local WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -87,8 +87,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
- 
-
 
 <!DOCTYPE html>
 <html>
@@ -107,20 +105,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
 
-
     <div class="col-sm">
         <div class="container">
                 <ul class="nav nav-tabs">
                     <li><a  href="index.php">Home</a></li>
                     <li><a  href="login.php">Login</a></li>
-                    <li><a  href="register.php">Register</a></li>
                     <li><a  href="me.php">Me</a></li>
                 </ul>
 
                 <div class="tab-content">
-                    
-
-                   
+                                  
                        
     <div class="col-sm-4 col-xs-12">
       <div class="panel panel-default text-center">
@@ -131,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Nume Utilizator</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <input type="text" name="username" class="form-control" >
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
@@ -146,7 +140,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </form>
         </div>
         <div class="panel-footer">
-          <p>Nu ai un cont? <a href="register.php">Inregistreaza-te acum</a>.</p>
+          
         </div>
       </div>      
     </div> 

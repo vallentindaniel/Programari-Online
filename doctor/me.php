@@ -4,20 +4,10 @@ session_start();
 require_once "config.php";
  //error_reporting(0);
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if(!isset($_SESSION["login_doctor"]) || $_SESSION["login_doctor"] !== true){
 		header("location: login.php");
 		exit;
 }
-
-$data_l = (date("d")*10)/10;
-$oral_l = date("H") + 2 ;
-$sql = "DELETE FROM programari WHERE zi_select = '$data_l' and ora_select < '$oral_l'";
-if (mysqli_query($link, $sql)) {
-    echo "";
-} else {
-    echo "";
-}
-
 
 ?>
 <!DOCTYPE html>
@@ -80,23 +70,23 @@ if (mysqli_query($link, $sql)) {
 				<?php            //https://www.dofactory.com/sql/join
 $doctor = $_SESSION["id"];
 $day = (date("d")*10)/10;
-$k = 0;                             // daca $k diferit de 0 sunt programari pt ziua curenta
+                           
 
-           $sql = "
+             $sql = "
 SELECT nume_jud, nume_loc, nume_sp, sectia, ora_select, zi_select, luna_select, an_select, nume, 
-       prenume, data_zi, data_luna, data_an, telefon, id_doctor
+       prenume, data_zi, data_luna, data_an, telefon,id_sesiune,programari.id
 FROM programari 
  JOIN judete           ON judete.id         =  programari.id_jud
  JOIN localitati       ON localitati.id     =  programari.id_loc
  JOIN spitale          ON spitale.id        =  programari.id_spital 
- JOIN sectii           ON sectii.id         =  programari.id_sectie 
-WHERE id_doctor = '$doctor' ";
+ JOIN sectii           ON sectii.id         =  programari.id_sectie  
+WHERE programari.id_doctor = '$doctor' ORDER BY programari.id DESC";
                    $result = $link->query($sql);
-if ($result->num_rows > 0){                  
- while ($row = $result->fetch_assoc()) {                
-   while ($row["zi_select"] == date("d")) {
-   	         $k = $k + 1;
-                       	$tabel = '<td>'. $row["nume_jud"].'</td>
+                   if ($result->num_rows > 0){                  
+                   while ($row = $result->fetch_assoc()) {
+                   
+$tabel = ' 
+          <td>'. $row["nume_jud"].'</td>
           <td>'. $row["nume_loc"].'</td>
           <td>'. $row["nume_sp"].'</td>
           <td>'. $row["sectia"].'</td>
@@ -105,18 +95,26 @@ if ($result->num_rows > 0){
           <td>'. $row["nume"].'</td>
           <td>'. $row["prenume"].'</td>
           <td>'. $row["data_zi"].'/'. $row["data_luna"].'/'. $row["data_an"].'</td>
-          <td>'. $row["telefon"].'</td>                
+          <td>'. $row["telefon"].'</td>     
+          <td>
+           <button name="print" value="'. $row["id"].'" >Print</button>
+          </td>             
                             <tr></tr>';
-                echo $tabel;
-   }
+echo $tabel;               
+  }                
+  $k=1;                               // daca $k diferit de 0 sunt programari pt ziua curenta     
+
+ }
+ else
+ $k = 0;
+
+
+ 
   if ($k == 0) {
      $as = "<td>Nu mai aveti programari astazi</td> <tr></tr>";
      echo $as;	
-    }  
+    }                
 
-
- }                
-}
 			?>   
 		</tbody>
 	</table>

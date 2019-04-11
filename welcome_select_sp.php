@@ -1,9 +1,6 @@
 <?php
 require_once "config.php";
-$mysqli = new mysqli("localhost", "root", "", "tfop");
-if($mysqli->connect_error) {
-  exit('Could not connect');
-}
+
 
 $sql = "SELECT id, nume_loc
 FROM localitati WHERE id = ?";

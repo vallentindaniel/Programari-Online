@@ -1,0 +1,4 @@
+[11-Apr-2019 06:19:06 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/doctor/login.php on line 59
+[11-Apr-2019 06:24:08 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/doctor/login.php on line 59
+[11-Apr-2019 06:55:54 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/doctor/login.php on line 59
+[11-Apr-2019 09:55:05 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/tfop/doctor/login.php on line 59

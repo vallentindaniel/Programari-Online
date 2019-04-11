@@ -1,9 +1,6 @@
 <?php
 require_once "config.php";
-$mysqli = new mysqli("localhost", "root", "", "tfop");
-if($mysqli->connect_error) {
-  exit('Could not connect');
-}
+
 
 $sql = "SELECT id, nr_zile, luna FROM `lunile_anului` WHERE luna = ?";
 

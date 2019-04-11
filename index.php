@@ -35,8 +35,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 <ul class="nav nav-tabs">
                     <li><a  href="index.php">Home</a></li>
                     <li><a  href="login.php">Login</a></li>
-                    <li><a  href="register.php">Register</a></li>
-                    <li><a  href="me.php">Me</a></li>
+                    <li><a  href="me.php">Programari</a></li>
                 </ul>
 
                 <div class="tab-content">
