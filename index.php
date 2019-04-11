@@ -14,6 +14,9 @@
   exit;
   }
 
+  $password_err = "";
+  $username_err = "";
+
   $functions = new functions();
 
 

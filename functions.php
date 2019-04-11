@@ -87,8 +87,6 @@ class functions{
                     $username_err = "No account found with that username.";
                     echo("No account found with that username.");
                 }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
             }
         }
         
