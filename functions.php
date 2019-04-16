@@ -96,6 +96,29 @@ class functions{
         // Close connection
         mysqli_close($link);
     }
+
+    public function AddProgramare($nume, $prenume, $tel, $date, $doc_name, $details){
+        $link = $this->Connect();
+        $docId = $this->GetDocId($doc_name);
+
+
+        $sql = "INSERT INTO Users (nume, prenume, telefon, id_doctor, Data, detalii) VALUES (
+            '$nume', '$prenume', '$tel', '$docId', '$date', '$details')";
+        if(mysqli_query($link, $sql)){
+            echo "Te-ai programat cu succes!";
+            echo "Asteapta confirmarea!";
+        } 
+        else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($connection);
+        }
+ 
+        // Close connection
+        mysqli_close($link);
+    }
+
+    public function GetDocId($doc_name){
+        return $doc_name; 
+    }
     
 
 

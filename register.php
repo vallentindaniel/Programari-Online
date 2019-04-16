@@ -1,13 +1,3 @@
-<?php
-
-
- if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false){
-  header("location: index.php");
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,9 +49,9 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Acasa <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Programarile mele</a></li>
-        <li><a href="http://89.34.100.127/logout.php">Logout</a></li>
+        <li ><a href="http://89.34.100.127/index.php">Acasa </a></li>
+        <li ><a href="http://89.34.100.127/index.php">Login </a></li>
+        <li class="active"><a href="#">Inregistrare <span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -79,6 +69,18 @@
 
 <div class="container">
 <div class="input-group input-group-lg">
+  <span class="input-group-addon">Username</span>
+  <input type="text" class="form-control" placeholder="Username">
+</div><br>
+<div class="input-group input-group-lg">
+  <span class="input-group-addon">Parola</span>
+  <input type="text" class="form-control" placeholder="Parola">
+</div><br>
+<div class="input-group input-group-lg">
+  <span class="input-group-addon">Email</span>
+  <input type="text" class="form-control" placeholder="Email">
+</div><br>
+<div class="input-group input-group-lg">
   <span class="input-group-addon">Nume</span>
   <input type="text" class="form-control" placeholder="Nume">
 </div><br>
@@ -87,27 +89,15 @@
   <input type="text" class="form-control" placeholder="Prenume">
 </div><br>
 <div class="input-group input-group-lg">
-  <span class="input-group-addon">Numar de telefon</span>
+  <span class="input-group-addon">Telefon</span>
   <input type="text" class="form-control" placeholder="Telefon">
 </div><br>
 <div class="input-group input-group-lg">
-  <span class="input-group-addon">Data</span>
-  <input type="date" class="form-control" placeholder="Telefon">
+  <span class="input-group-addon">Data nasterii</span>
+  <input type="date" class="form-control" placeholder="Data nasterii">
 </div><br>
-<div class="form-group">
-      <label for="doc">Doctor:</label>
-      <select class="form-control" id="doc">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
-</div><br>
-<div class="form-group">
-      <label for="details">Detalii:</label>
-      <textarea class="form-control" rows="5" id="details"></textarea>
-</div><br>
-<button type="button" class="btn btn-default">Trimite</button>
+<button type="button" class="btn btn-default">Inregistrare</button>
+<a href="http://89.34.100.127/index.php" class="btn btn-info" role="button">Esti deja inregistrat?</a>
 
  
 </div>

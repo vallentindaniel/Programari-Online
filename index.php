@@ -30,12 +30,13 @@
     //Modificarea mesajelor din Register.php si de aici din login , sa apara mai ok cand te inregistrezi/loghezi
     //Welcome.php trebuie refacut tot , sa facem ce am vorbit
 
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $functions->Login($username, $password);
-  }
+    if($_SERVER['REQUEST_METHOD'] == "post" )
+    {
+        $username = $_GET['user']; 
+        $password =  $_GET['pass']; 
+        $functions->Login($username, $password);
+    }
+    
 
 
 ?>
@@ -43,74 +44,90 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TFOP</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta charset="UTF-8">
+ 
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<title>Welcome user</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ 
+<style>
+.jumbotron{
+    background-color:#2E2D88;
+    color:white;
+}
+
+.tab-content {
+    border-left: 4px solid #ddd;
+    border-right: 4px solid #ddd;
+    border-bottom: 4px solid #ddd;
+    padding: 10px;
+}
+.nav-tabs {
+    margin-bottom: 0;
+}
+</style>
+ 
 </head>
 <body>
 
-    <div class="col-sm">
-        <div class="container">
-                <ul class="nav nav-tabs">
-                    <li><a  href="index.php">Home</a></li>
-                    <li><a  href="login.php">Login</a></li>
-                    <li><a  href="me.php">Programari</a></li>
-                </ul>
 
-                <div class="tab-content">
-                    
-  
-                
-<legend>
-	<h1>Bun venit!</h1>
-    <h2>Aici puteti face programari online la un spital</h2>
-    <h3>Va rugam conectativa</h3> 
-</legend>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
 
-<div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-            <h1>Login</h1>
-        </div>
-        <div class="panel-body">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Nume Utilizator</label>
-                <input type="text" name="username" class="form-control" >
-                <span class="help-block"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Parola</label>
-                <input type="password" name="password" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Logare">
-                 <input type="reset" class="btn btn-default" value="Reset">
-            </div>
-        </form>
-        </div>
-        <div class="panel-footer">
-          
-        </div>
-      </div>      
-    </div> 
-                         
-                    
-                </div>
-        </div>
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+        <span class="sr-only"></span>
+
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
 
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Acasa <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Programarile mele</a></li>
+        <li><a href="http://89.34.100.127/register.php">Inregistrare</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Telefon</a></li>
+            <li><a href="#">Email</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Adresa</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</div>
 
+<div class="container">
+<div class="input-group input-group-lg">
+  <span class="input-group-addon">Username</span>
+  <input type="text" name = "user" id = "user" class="form-control" placeholder="username">
+</div><br>
+<div class="input-group input-group-lg">
+  <span class="input-group-addon">Parola</span>
+  <input type="password" name="pass" id = "pass" class="form-control" placeholder="password">
+</div><br>
+<a class="btn btn-default" role="button">Login</a>
+<a href="http://89.34.100.127/register.php" class="btn btn-info" role="button">Nu ai cont?</a>
+
+ 
+</div>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
