@@ -1,12 +1,14 @@
+
+
 <?php
 
+//O pagina in care sa arate statusul programariilor curente ale userului
+//daca sunt acceptate si la ce ora ei sunt asteptati
 
  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false){
   header("location: index.php");
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +61,8 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Acasa <span class="sr-only">(current)</span></a></li>
-        <li><a href="http://89.34.100.127/programari.php">Programarile mele</a></li>
+        <li class="active"><a href="http://89.34.100.127/welcome.php">Acasa</a></li>
+        <li><a href="http://89.34.100.127/programari.php">Programarile mele <span class="sr-only">(current)</span></a></li>
         <li><a href="http://89.34.100.127/logout.php">Logout</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
