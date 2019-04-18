@@ -1,7 +1,9 @@
 
 
 <?php
-
+require_once "config.php";
+  include ("functions.php");
+ // error_reporting(0);
 //O pagina in care sa arate statusul programariilor curente ale userului
 //daca sunt acceptate si la ce ora ei sunt asteptati
 
@@ -17,7 +19,9 @@
  
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 
 <meta name="viewport" content="width = device-width, initial-scale = 1">
 <title>Welcome user</title>
@@ -79,13 +83,49 @@
 </nav>
 </div>
 
-<div class="container">
+
+<div class="container">      
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nume</th>
+        <th>Prenume</th>
+        <th>Data</th>
+        <th>Ora</th>
+        <th>Doctor</th>
+        <th>Detalii</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+$functions = new functions();
+$link = $functions->Connect();
+$sql = "
+SELECT nume, prenume, telefon, data, id_doctor,DATE_FORMAT(ora, '%H:%i') as 'ora' , detalii FROM programari WHERE 1 ";
+$result = $link->query($sql);
+if ($result->num_rows > 0){                  
+  while ($row = $result->fetch_assoc()) {
+                   
+    $tabel = ' 
+        <td>'. $row["nume"].'</td>
+        <td>'. $row["prenume"].'</td>
+        <td>'. $row["data"].'</td>
+        <td>'. $row["ora"].'</td>
+        <td>'. $row["id_doctor"].'</td>
+        <td>'. $row["detalii"].'</td>             
+        <tr></tr>';
+    echo $tabel;               
+    }                
+}
 
 
- 
+    ?>
 
 
+    </tbody>
+  </table>
 </div>
+
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

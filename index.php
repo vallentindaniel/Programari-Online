@@ -35,7 +35,7 @@
     // modificarea de la functia Login prin parametrul $tabel iti permite sa refolosesti functia si la alte conecari
     // atat ca trebuie modificat numele $_SESSION["loggedin"] pentru a nu se loga de pe un cont pe altul 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $tabel = 'users';
+    $tabel = 'Users';
     $username = $_POST["username"];
     $password = $_POST["password"];
     $functions->Login($username, $password, $tabel);
@@ -91,7 +91,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Acasa <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Programarile mele</a></li>
+        <li><a href="/register.php">Inregistrare</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -118,6 +118,7 @@
   <input type="password" name="password" id = "pass" class="form-control" placeholder="password">
 </div><br>
 <input type="submit" class="btn btn-default" value="Login">
+<a href="register.php" class="btn btn-info" role="button">Nu esti inregistrat?</a>
 </div>
  </form>
 
