@@ -39,7 +39,7 @@ class functions{
         $sql = "INSERT INTO Users (Username, Password, Email, Nume, Prenume, DataNasterii, NrTelefon) VALUES (
             '$username', '$param_password', '$email', '$firstName', '$secondName', '$date', '$tel')";
         if(mysqli_query($link, $sql)){
-            $this->Alert("Te-ai inregistrat cu succes!");
+           // echo "Te-ai inregistrat cu succes!";
         } 
         else{
             //echo "ERROR: Could not able to execute $sql. " . mysqli_error($connection);
@@ -77,19 +77,17 @@ class functions{
                             $_SESSION["username"] = $username;
                             
                             // Redirect user to welcome page
-                            $this->Alert("Te-ai logat cu succes!");
                             header("location: welcome.php");
-                            
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
-                            $this->Alert("Parola introdusa nu este corecta!");
+                              // echo("The password you entered was not valid.");
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
                     $username_err = "No account found with that username.";
-                    $this->Alert("Nu exista un cont cu acel username!");
+                       // echo("No account found with that username.");
                 }
             }
         }
@@ -124,6 +122,8 @@ class functions{
         return $doc_name; 
     }
     
+
+
     public function Logout(){
         session_start();
  
@@ -134,13 +134,11 @@ class functions{
         session_destroy();
  
         // Redirect to login page
-        header("location: index.php");
+        header("location: home.php");
         exit;
     }
     
-    public function Alert($msg) {
-        echo "<script type='text/javascript'>alert('$msg');</script>";
-    }
+    
     
 }
 ?>
