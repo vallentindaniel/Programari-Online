@@ -49,8 +49,8 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ><a href="http://89.34.100.127/index.php">Acasa </a></li>
-        <li ><a href="http://89.34.100.127/index.php">Login </a></li>
+        <li ><a href="localhost/tfop/index.php">Acasa </a></li>
+        <li ><a href="localhost/tfop/index.php">Login </a></li>
         <li class="active"><a href="#">Inregistrare <span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
@@ -94,7 +94,7 @@
 </div><br>
 <div class="input-group input-group-lg">
   <span class="input-group-addon">Data nasterii</span>
-  <input type="date" class="form-control" placeholder="Data nasterii">
+  <input type="date" class="form-control" placeholder="Data nasterii" >
 </div><br>
 <button type="button" class="btn btn-default">Inregistrare</button>
 <a href="http://89.34.100.127/index.php" class="btn btn-info" role="button">Esti deja inregistrat?</a>

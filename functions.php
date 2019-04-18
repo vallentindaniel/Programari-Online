@@ -1,14 +1,16 @@
 <?php
     //pentru debug
-    include("config.php");
+    require_once "config.php";
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    
+
+
 
 class functions{
 
     public function Connect(){
-
         $host = DB_SERVER;
         $user = DB_USERNAME;
         $pass = DB_PASSWORD;
@@ -37,20 +39,20 @@ class functions{
         $sql = "INSERT INTO Users (Username, Password, Email, Nume, Prenume, DataNasterii, NrTelefon) VALUES (
             '$username', '$param_password', '$email', '$firstName', '$secondName', '$date', '$tel')";
         if(mysqli_query($link, $sql)){
-            echo "Te-ai inregistrat cu succes!";
+           // echo "Te-ai inregistrat cu succes!";
         } 
         else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($connection);
+            //echo "ERROR: Could not able to execute $sql. " . mysqli_error($connection);
         }
  
         // Close connection
         mysqli_close($link);
     }
 
-    public function Login($username, $password){
+    public function Login($username, $password, $tabel){
         $link = $this->Connect();
         
-        $sql = "SELECT Id, Username, Password FROM Users WHERE Username = '$username'";
+        $sql = "SELECT Id, Username, Password FROM ".$tabel." WHERE Username = '$username'";
         
         if($stmt = mysqli_prepare($link, $sql)){
             
@@ -79,13 +81,13 @@ class functions{
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
-                            echo("The password you entered was not valid.");
+                              // echo("The password you entered was not valid.");
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
                     $username_err = "No account found with that username.";
-                    echo("No account found with that username.");
+                       // echo("No account found with that username.");
                 }
             }
         }
