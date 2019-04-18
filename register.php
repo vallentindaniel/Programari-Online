@@ -35,7 +35,6 @@
     // modificarea de la functia Login prin parametrul $tabel iti permite sa refolosesti functia si la alte conecari
     // atat ca trebuie modificat numele $_SESSION["loggedin"] pentru a nu se loga de pe un cont pe altul 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $functions->Alert("TEST!!!");
     $username = $_POST["username"];
     $password = $_POST["password"];
     $email = $_POST["email"];
@@ -117,6 +116,7 @@
 </nav>
 </div>
 
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 <div class="container">
 <div class="input-group input-group-lg">
   <span class="input-group-addon">Username</span>
@@ -151,7 +151,8 @@
 
  
 </div>
- 
+</form>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>

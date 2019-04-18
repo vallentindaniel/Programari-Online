@@ -39,7 +39,7 @@ class functions{
         $sql = "INSERT INTO Users (Username, Password, Email, Nume, Prenume, DataNasterii, NrTelefon) VALUES (
             '$username', '$param_password', '$email', '$firstName', '$secondName', '$date', '$tel')";
         if(mysqli_query($link, $sql)){
-            Alert("Te-ai inregistrat cu succes!");
+            $this->Alert("Te-ai inregistrat cu succes!");
         } 
         else{
             //echo "ERROR: Could not able to execute $sql. " . mysqli_error($connection);

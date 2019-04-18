@@ -211,7 +211,7 @@ VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
 
       <ul class="nav navbar-nav">
 
-        <li class="active"><a href="#">Acasa <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="welcome.php">Acasa <span class="sr-only">(current)</span></a></li>
 
         <li><a href="programari.php">Programarile mele</a></li>
 
