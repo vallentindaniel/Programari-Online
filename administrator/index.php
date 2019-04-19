@@ -14,45 +14,19 @@
 
   error_reporting(E_ALL);
 
-  
-
   session_start();
 
   // Check if the user is already logged in, if yes then redirect him to welcome page
 
-  if(isset($_SESSION["doctor"]) && $_SESSION["doctor"] === true){
+  if(!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true){
 
-  header("location: welcome.php");
+    header("location: login.php");
 
-  exit;
+    exit;
 
-  }
-
-
-
-  $password_err = "";
-
-  $username_err = "";
+}
 
 
-
-  $functions = new functions();
-
-
-
-
-
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    $tabel = 'doctors';
-
-    $username = $_POST["username"];
-
-    $password = $_POST["password"];
-
-    $functions->Login($username, $password, $tabel);
-
-  }
 
 ?>
 
@@ -154,9 +128,15 @@
 
       <ul class="nav navbar-nav">
 
-        <li class="active"><a href="#">Login <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="home.php">Acasa <span class="sr-only">(current)</span></a></li>
 
-        <li><a href="contact.php">Contact</a></li>
+        <li><a href="register.php">Inregistreaza Doctor</a></li>
+
+        <li><a href="users.php">Gestioneaza Utilizatori</a></li>
+
+        <li><a href="doctors.php">Gestioneaza Doctori</a></li>
+
+        <li><a href="logout.php">Logout</a></li>
 
       </ul>
 
@@ -166,39 +146,11 @@
 
 </nav>
 
-<div>
-
-	<legend>Doctor</legend>
-
-</div>
 
 
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 
-<div class="container">
 
-<div class="input-group input-group-lg">
-
-  <span class="input-group-addon">Username</span>
-
-  <input type="text" name = "username" id = "user" class="form-control" placeholder="username">
-
-</div><br>
-
-<div class="input-group input-group-lg">
-
-  <span class="input-group-addon">Parola</span>
-
-  <input type="password" name="password" id = "pass" class="form-control" placeholder="password">
-
-</div><br>
-
-<input type="submit" class="btn btn-default" value="Login">
-
-</div>
-
- </form>
 
 
 

@@ -23,92 +23,64 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-
-if(empty(trim($_POST["nume"]))){
-                     $nume_err = "Te rog introdu numele.";
-              }
-                    else{
-                  $nume = $_POST["nume"];
-              }
-if(empty(trim($_POST["prenume"]))){
-                     $prenume_err = "Te rog introdu prenumele.";
-              }
-                    else{
-                   $prenume = $_POST["prenume"];
-              } 
-if(empty(trim($_POST["nr_tel"]))){
-                     $nr_tel_err = "Te rog introdu numarul de telefon.";
-              }
-                    else{
-                   $nr_tel = $_POST["nr_tel"];
-              } 
-
-
-if(empty(trim($_POST["data"]))){
-                     $data_err = "Te rog introdu data.";
-              }
-                    else {
-                  $data = $_POST["data"];
-              } 
-
-if(empty(trim($_POST["doctor"]))){
-                     $doctor_err = "Te selecteaza un doctor.";
-              }
-                    else {
-                  $doctor =  $_POST["doctor"];
-              } 
-
-if(empty(trim($_POST["detalii"]))){
-                     $detalii_err = "Te rog scrie detalii";
-              }
-                    else {
-                  $detalii =  $_POST["detalii"];
-              } 
-$functions = new functions();
-
- $link = $functions->Connect();
-     
-if( empty($nume_err) && empty($prenume_err) && empty($nr_tel_err) && empty($data_err) && empty($doctor_err) and empty($detalii_err) ){
- $id_user = $_SESSION["id"];
-
- $sql = "
-INSERT INTO programari( id_user, nume, prenume, telefon, data, id_doctor, detalii)
-VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor', '$detalii')";
-                  $result = $link->query($sql);                
-                  $link->close();
-
-
-   echo '<script type="text/javascript">
-                           window.location.replace("http://89.34.100.127/programari.php");
-                      </script>';                
-
+  $errors = array();
+  $required = array("Nume", "Prenume", "Telefon", "Data", "Doctor", "Detalii");  
+  foreach($_POST as $key=>$value)
+  {
+      if(!empty($value))
+      {
+          $$key = $value;
+      }
+      else
+      {
+           if(in_array($key, $required))
+           {
+               array_push($errors, $key);
+           }
+      }        
+  
+  }
+  if(empty($errors))
+{
+  $nume = $_POST["Nume"];
+  $prenume = $_POST["Prenume"];
+  $nr_tel = $_POST["Telefon"];
+  $data = $_POST["Data"];
+  $doctor =  $_POST["Doctor"];
+  $detalii =  $_POST["Detalii"];
+  $functions = new functions();
+  
+  $link = $functions->Connect();
+       
+  $functions->AddProgramare($nume, $prenume, $nr_tel, $data, $doctor, $detalii);
 }
-else if( empty($nume_err) && empty($prenume_err) && empty($nr_tel_err) && empty($data_err) && empty($doctor_err) ){
- $id_user = $_SESSION["id"];
-
- $sql = "
-INSERT INTO programari( id_user, nume, prenume, telefon, data, id_doctor)
-VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
-                  $result = $link->query($sql);                
-                  $link->close();
-
-                  echo '<script type="text/javascript">
-                           window.location.replace("http://89.34.100.127/programari.php");
-                      </script>';
-                                                     // http://localhost/tfop/programari.php
-
-}
-
-
+else
+{
+    //display errors
+    echo "<ul>";
+    echo "<li>Urmatoarele campuri au valori invalide :</li>";
+    foreach($errors as $error)
+    {
+        echo "<li>" . $error . "</li>";
+    }
+    echo "</ul>";
 }
 
 
 
 
+}
 
 
 
 ?>
+<style>
+.alert {
+   width:5%;
+   height:10px;  
+}
+</style>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -173,6 +145,18 @@ VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
 
 <body>
 
+<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+<script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
+<!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!--Font Awesome (added because you use icons in your prepend/append)-->
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
 
 
 
@@ -217,23 +201,7 @@ VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
 
         <li><a href="logout.php">Logout</a></li>
 
-        <li class="dropdown">
-
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
-
-          <ul class="dropdown-menu">
-
-            <li><a href="#">Telefon</a></li>
-
-            <li><a href="#">Email</a></li>
-
-            <li role="separator" class="divider"></li>
-
-            <li><a href="#">Adresa</a></li>
-
-          </ul>
-
-        </li>
+        <li><a href="/contact.php">Contact</a></li>
 
       </ul>
 
@@ -255,7 +223,7 @@ VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
 
   <span class="input-group-addon">Nume</span>
 
-  <input type="text" class="form-control" placeholder="Nume" name="nume">
+  <input type="text" class="form-control" placeholder="Nume" name="Nume">
 
 </div><br>
 
@@ -263,7 +231,7 @@ VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
 
   <span class="input-group-addon">Prenume</span>
 
-  <input type="text" class="form-control" placeholder="Prenume" name="prenume">
+  <input type="text" class="form-control" placeholder="Prenume" name="Prenume">
 
 </div><br>
 
@@ -271,22 +239,24 @@ VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
 
   <span class="input-group-addon">Numar de telefon</span>
 
-  <input type="text" class="form-control" placeholder="Telefon" name="nr_tel">
+  <input type="text" class="form-control" placeholder="Telefon" name="Telefon">
 
 </div><br>
 
-<div class="input-group input-group-lg">
-
-  <span class="input-group-addon">Data</span>
-  <input type="date" class="form-control"  name="data">
-
+<div class="input-group">
+<span class="input-group-addon">Data Programarii</span>
+    <div class="input-group-addon">
+      <i class="fa fa-calendar">
+      </i>
+    </div>
+    <input class="form-control" id="Data" name="Data" placeholder="DD/MM/YYYY" type="text"/>
 </div><br>
 
 <div class="form-group">
 
       <label for="doc">Doctor:</label>
 
-      <select class="form-control" id="doc" name="doctor">
+      <select class="form-control" id="doc" name="Doctor">
 
         <option value="">Selecteaza-ma:</option>
         <?php     
@@ -315,10 +285,10 @@ VALUES('$id_user','$nume', '$prenume', '$nr_tel','$data','$doctor')";
 $det = 'EX: Dureri de cap puternice,febra,lipsa poftei de mancare...';
 
 ?>
-      <textarea class="form-control" rows="5" id="details" name="detalii" <?php echo 'placeholder="'.$det.'"; ' ?>></textarea>
+      <textarea class="form-control" rows="5" id="details" name="Detalii" <?php echo 'placeholder="'.$det.'"; ' ?>></textarea>
 
 </div><br>
-<input type="submit" name="Trimite">
+<input type="submit" class="btn btn-info" value="Trimite">
  
 
 </div>
@@ -326,9 +296,24 @@ $det = 'EX: Dureri de cap puternice,febra,lipsa poftei de mancare...';
  </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+	$(document).ready(function(){
+		var date_input=$('input[name="Data"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'dd/mm/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
 </body>
 
 </html>

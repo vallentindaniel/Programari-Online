@@ -1,0 +1,14 @@
+[19-Apr-2019 04:42:29 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:43:00 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/doctor/functions.php on line 271
+[19-Apr-2019 04:43:01 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:43:02 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:43:04 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:43:12 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:43:13 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/doctor/functions.php on line 143
+[19-Apr-2019 04:43:20 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:46:33 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:50:00 UTC] PHP Notice:  Undefined index: id in /home/alexduminica/public_html/doctor/contact.php on line 135
+[19-Apr-2019 04:51:09 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/doctor/functions.php on line 271
+[19-Apr-2019 04:51:15 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/doctor/functions.php on line 143
+[19-Apr-2019 04:56:18 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/doctor/functions.php on line 143
+[19-Apr-2019 05:03:25 UTC] PHP Notice:  A session had already been started - ignoring session_start() in /home/alexduminica/public_html/doctor/functions.php on line 271

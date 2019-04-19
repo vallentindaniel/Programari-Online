@@ -48,6 +48,7 @@ $sql = "UPDATE programari SET ora = '$ora', Status = 1  WHERE id ='$mod' ";
 
 }
 
+}
 
 if (isset($_GET['ref'])) {
 
@@ -59,7 +60,6 @@ if (isset($_GET['ref'])) {
     
     }
 
-}
 
   ?>
 
@@ -125,15 +125,15 @@ if (isset($_GET['ref'])) {
 
                     <ul class="nav navbar-nav">
 
-                        <li><a href="welcome.php">Acasa </a></li>
+                        <li class="active"><a href="welcome.php">Acasa<span class="sr-only">(current)</span> </a></li>
 
-                        <li><a href="pacienti.php">Pacienti<span class="sr-only">(current)</span></a></li>
+                        <li><a href="pacienti.php">Pacienti</a></li>
 
                         <li><a href="creaza_reteta.php">Reteta</a></li>
 
                         <li><a href="print.php">Print</a></li>
 
-                        <li class="active"><a href="programari.php">Programari</a></li>
+                        <li><a href="programari.php">Programari</a></li>
 
                         <li><a href="logout.php">Logout</a></li>
 
@@ -149,7 +149,18 @@ if (isset($_GET['ref'])) {
 
         </nav>
 
-        </div>
+        <div class="container-fluid">        
+
+  <div class="col-sm-14 col-xs-12">
+
+    <div class="panel panel-default text-center">
+
+      <div class="panel-heading">
+
+        <h1>Programarile pacientilor pe ziua de astazi</h1>
+
+      </div>
+
 
         <div class="container-fluid">
 
@@ -182,10 +193,12 @@ $functions = new functions();
 $link = $functions->Connect();
 
 $id = $_SESSION["id"];
+$curDate = new DateTime(date('Y-m-d'));
+$curDateStr = $curDate->format('Y-m-d');
 
 $sql = "
 
-SELECT id,status, nume, prenume, telefon, data, id_doctor,DATE_FORMAT(ora, '%H:%i') as 'ora' , detalii FROM programari WHERE id_doctor = '$id' ";
+SELECT id,status, nume, prenume, telefon, data, id_doctor,DATE_FORMAT(ora, '%H:%i') as 'ora' , detalii FROM programari WHERE id_doctor = '$id' AND data='$curDateStr' ";
 
 $result = $link->query($sql);
 
@@ -268,7 +281,6 @@ if ($result->num_rows > 0){
         <td>'. $row["ora"].'</td>
 
         <td>'. $row["detalii"].'</td>
-
         </tr>
 
         ';
@@ -287,6 +299,7 @@ if ($result->num_rows > 0){
 
             </table>
 
+        </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

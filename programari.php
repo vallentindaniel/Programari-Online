@@ -2,7 +2,9 @@
 
 <?php
 require_once "config.php";
-  include ("functions.php");
+include ("functions.php");
+
+session_start();
  // error_reporting(0);
 //O pagina in care sa arate statusul programariilor curente ale userului
 //daca sunt acceptate si la ce ora ei sunt asteptati
@@ -93,23 +95,7 @@ require_once "config.php";
 
         <li><a href="logout.php">Logout</a></li>
 
-        <li class="dropdown">
-
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
-
-          <ul class="dropdown-menu">
-
-            <li><a href="#">Telefon</a></li>
-
-            <li><a href="#">Email</a></li>
-
-            <li role="separator" class="divider"></li>
-
-            <li><a href="#">Adresa</a></li>
-
-          </ul>
-
-        </li>
+        <li><a href="/contact.php">Contact</a></li>
 
       </ul>
 
@@ -138,18 +124,24 @@ require_once "config.php";
     <?php
 $functions = new functions();
 $link = $functions->Connect();
+$id = $_SESSION["id"];
 $sql = "
-SELECT nume, prenume, telefon, data, id_doctor,DATE_FORMAT(ora, '%H:%i') as 'ora' , detalii FROM programari WHERE 1 ";
+SELECT status, nume, prenume, telefon, data, id_doctor,DATE_FORMAT(ora, '%H:%i') as 'ora' , detalii FROM programari WHERE id_user = '$id' ";
 $result = $link->query($sql);
 if ($result->num_rows > 0){                  
   while ($row = $result->fetch_assoc()) {
-                   
+    if($row["status"] == 1)
+      $color = "#85e085";
+    else
+      $color = "#ff8080";
+
     $tabel = ' 
+        <tr style = "background-color : '.$color.'">
         <td>'. $row["nume"].'</td>
         <td>'. $row["prenume"].'</td>
         <td>'. $row["data"].'</td>
         <td>'. $row["ora"].'</td>
-        <td>'. $row["id_doctor"].'</td>
+        <td>'. $functions->GetDocName($row["id_doctor"]).'</td>
         <td>'. $row["detalii"].'</td>             
         <tr></tr>';
     echo $tabel;               
